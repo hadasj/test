@@ -1,0 +1,81 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>cz.i</groupId>
+	<artifactId>test</artifactId>
+	<version>0.1</version>
+	<packaging>jar</packaging>
+
+	<name>Junit tests with mocks</name>
+	<description>Example of integration tests using library lightair.</description>
+	<organization>
+		<name>ICZ</name>
+		<url>http://www.i.cz/</url>
+	</organization>
+	<inceptionYear>2016</inceptionYear>
+
+	<repositories>
+		<repository>
+			<id>ICZ-internal</id>
+			<url>http://maven-repo-2.i.cz:8888/artifactory/internal</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>ICZ-internal</id>
+			<url>http://maven-repo-2.i.cz:8888/artifactory/internal</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<properties>
+		<version.log4j>2.5</version.log4j>
+	</properties>
+
+	<dependencies>
+		<!-- logging - log4j -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${version.log4j}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${version.log4j}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- apache commons -->
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+		<!-- tests - JUnit, JMock -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>	
+	</dependencies>
+
+</project>
