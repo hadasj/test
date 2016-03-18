@@ -37,6 +37,10 @@ public class Storage {
     }
   }
 
+  public String[] list() {
+    return new File(STORE).list();
+  }
+
   public void delete(Long id) {
     File file = new File(createPath(id));
     if (file.exists()) {

@@ -27,8 +27,15 @@ public class ObyvatelDao {
     storage.delete(obyvatel.getId());
   }
 
-  public Obyvatel search(String firstName, String lastName) {
-    throw new IllegalStateException("Unimplemented");
+  public Obyvatel search(String firstName, String lastName) throws IOException, ClassNotFoundException {
+    for (String id : storage.list()) {
+      Obyvatel obyvatel = storage.read(Long.parseLong(id));
+      if (firstName.equals(obyvatel.getFirstName())
+          && lastName.equals(obyvatel.getSurName())) {
+        return obyvatel;
+      }
+    }
+    return null;
   }
 
   public Obyvatel get(Long id) throws IOException, ClassNotFoundException {

@@ -1,6 +1,7 @@
 package cz.i.test.dao;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.io.IOException;
 
@@ -48,10 +49,10 @@ public class ObyvatelDaoTest extends JMockSupport{
 
   @Test
   public void should_update_obyvatel() throws IOException {
-    //TODO: FIX test data..
     final Obyvatel obyvatel = new Obyvatel();
+    obyvatel.setId(ID);
 
-    check(new Expectations(){{
+    check(new Expectations() {{
       one(storage).write(obyvatel);
     }});
 
@@ -63,16 +64,46 @@ public class ObyvatelDaoTest extends JMockSupport{
     final Obyvatel obyvatel = new Obyvatel();
     obyvatel.setId(ID);
 
-    //TODO: FIX mock expectations
+    check(new Expectations(){{
+      one(storage).delete(ID);
+    }});
 
     serviceUnderTest.delete(obyvatel);
   }
 
   @Test
-  public void should_return_obyvatel() {
-    //TODO: implement search method, FIX test
+  public void should_return_obyvatel() throws IOException, ClassNotFoundException {
+    final Obyvatel obyvatel = new Obyvatel();
+    obyvatel.setFirstName("Martin");
+    obyvatel.setSurName("Tuma");
 
-    Obyvatel obyvatel = serviceUnderTest.search("Martin", null);
-    assertNotNull(obyvatel);
+    check(new Expectations() {{
+      one(storage).list();
+      will(returnValue(new String[]{"1"}));
+      inSequence(sequence);
+
+      one(storage).read(1L);
+      will(returnValue(obyvatel));
+    }});
+
+    Obyvatel result = serviceUnderTest.search("Martin", "Tuma");
+    assertNotNull("returned null!!", result);
+  }
+
+  @Test
+  public void should_not_return_obyvatel() throws IOException, ClassNotFoundException {
+    final Obyvatel obyvatel = new Obyvatel();
+
+    check(new Expectations(){{
+      one(storage).list();
+      will(returnValue(new String[]{"1"}));
+      inSequence(sequence);
+
+      one(storage).read(1L);
+      will(returnValue(obyvatel));
+    }});
+
+    Obyvatel result = serviceUnderTest.search("Martin", "Tuma");
+    assertNull("returned not null!!", result);
   }
 }
