@@ -20,7 +20,7 @@ public class ObyvatelService {
   public Long createPersist(String firstName, String surName) throws IOException {
     Long id = createPersist(firstName, surName, LocalDate.now());
 
-    return null;
+    return id;
   }
 
   public Long createPersist(String firstName, String surName, LocalDate birthDate) throws IOException {
