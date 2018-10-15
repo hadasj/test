@@ -4,7 +4,7 @@
 
 	<groupId>cz.i</groupId>
 	<artifactId>test</artifactId>
-	<version>0.1</version>
+	<version>0.2</version>
 	<packaging>jar</packaging>
 
 	<name>Junit tests with mocks</name>
@@ -14,6 +14,12 @@
 		<url>http://www.i.cz/</url>
 	</organization>
 	<inceptionYear>2016</inceptionYear>
+
+	<properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.compiler.plugin>3.8.0</version.compiler.plugin>
+        <maven.compiler.release>11</maven.compiler.release>
+	</properties>
 
 	<repositories>
 		<repository>
@@ -97,6 +103,11 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>2.9</version>
         </plugin>
+		  <plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-compiler-plugin</artifactId>
+			  <version>${version.compiler.plugin}</version>
+		  </plugin>
       </plugins>
     </pluginManagement>
   </build>
